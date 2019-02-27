@@ -3,36 +3,40 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v3.8.5">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <title>Project 2</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
-  <!-- Bootstrap core CSS -->
-  <link href="css\bootstrap.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link href="css\bootstrap.css" rel="stylesheet">
 
 
   <style>
     .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
           }
-        }
-      </style>
-  <!-- Custom styles for this template -->
-  <link href="css\bootstrap.css" rel="stylesheet">
+
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+      #map {
+      height: 400px;  /* The height is 400 pixels */
+      width: 100%;
+      }
+
+        </style>
 </head>
 
 <body>
@@ -40,7 +44,7 @@
 
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container d-flex justify-content-between">
-        <strong>311 Graffiti Removal</strong>
+        <p id="title">311 Graffiti Removal</p>
       </div>
     </div>
   </header>
@@ -203,6 +207,10 @@
 
   </main>
 
+  <section>
+    <div id="map"></div>
+  </section>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
@@ -212,10 +220,66 @@
       <p>.</p>
     </div>
   </footer>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script>
     window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
   </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+    // Initialize and add the map
+    function initMap() {
+      // The location of Uluru
+      var chicago = {
+        lat: 41.8781,
+        lng: -87.6298
+      };
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+        document.getElementById('map'), {
+          zoom: 11,
+          center: chicago
+        });
+
+      $.get("https://data.cityofchicago.org/resource/cwig-ma7x.json?$limit=5",
+
+        function(response) {
+          console.log("in data callback");
+          var data = response;
+          createMarkers(map, data);
+        });
+
+      function createMarkers(map, data) {
+        console.log(data);
+        $.each(data, function(i, v) {
+
+          var location = {
+            lat: parseFloat(v.latitude),
+            lng: parseFloat(v.longitude)
+          }
+
+          var marker = new google.maps.Marker({
+            position: location,
+            map: map
+          });
+
+          var infowindow = new google.maps.InfoWindow({
+            content: v.dba_name
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+
+        });
+      }
+    };
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACQ-Se5XgECXNgPfbY88TBNMYoijTtSUI&callback=initMap">
+  </script>
+  <script src="js\register-sw.js"></script>
 </body>
 
 </html>
