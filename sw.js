@@ -1,74 +1,47 @@
-const appName = '311-Graffiti-Removal';
-const staticCacheName = appName + '-v1.0';
+/*
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License
+ *
+ */
 
-const contentImgsCache = appName + '-images';
 
-let allCaches = [staticCacheName, contentImgsCache];
+version = '1.0';
 
-/* Adds service worker install time and caches all static assets */
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open(staticCacheName).then(function(cache) {
+let cacheName = 'Graffiti_Removal' + version;
+
+self.addEventListener('install', e => {
+  let timeStamp = Date.now();
+  e.waitUntil(
+    caches.open(cacheName).then(cache => {
       return cache.addAll([
-        '/',
-        '/index.html'
-      ]);
+        `./`,
+        `./index.html`
+      ])
+      .then(() => self.skipWaiting());
     })
-  );
+  )
 });
 
-/* Activation of service worker and deletes previous caches if any */
-self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.filter(function(cacheName) {
-          return cacheName.startsWith(appName) &&
-            !allCaches.includes(cacheName);
-        }).map(function(cacheName) {
-          return caches.delete(cacheName);
-        })
-      );
-    })
-  );
+// https://stackoverflow.com/questions/41009167/what-is-the-use-of-self-clients-claim
+
+self.addEventListener('activate',  event => {
+  event.waitUntil(self.clients.claim());
 });
 
-/* "Hijacking" fetch requests and responding to it */
-self.addEventListener('fetch', function(event) {
-  const requestUrl = new URL(event.request.url);
-
-  // only highjack request made to our app
-  if (requestUrl.origin === location.origin) {
-
-    if (requestUrl.pathname.startsWith('/index.html')) {
-      event.respondWith(caches.match('/index.html'));
-      return; // Done handling request, so exit early.
-    }
-
-    if (requestUrl.pathname.startsWith('/img')) {
-      event.respondWith(serveImage(event.request));
-      return; // Done handling request, so exit early.
-    }
-  }
-
+self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
+    caches.match(event.request, {ignoreSearch:true}).then(response => {
       return response || fetch(event.request);
     })
   );
 });
-
-function serveImage(request) {
-  let imageStorageUrl = request.url;
-  imageStorageUrl = imageStorageUrl.replace(/-small\.\w{3}|-medium\.\w{3}|-large\.\w{3}/i, '');
-
-  return caches.open(contentImgsCache).then(function(cache) {
-    return cache.match(imageStorageUrl).then(function(response) {
-      // if image is in cache, return it, else fetch from network, cache a clone, then return network response
-      return response || fetch(request).then(function(networkResponse) {
-        cache.put(imageStorageUrl, networkResponse.clone());
-        return networkResponse;
-      });
-    });
-  });
-}

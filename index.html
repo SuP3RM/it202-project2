@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v3.8.5">
-  <link rel="manifest" href="/manifest.json">
+  <link rel='manifest' href='./manifest.json'>
   <title>Project 2</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -276,7 +276,15 @@
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACQ-Se5XgECXNgPfbY88TBNMYoijTtSUI&callback=initMap">
   </script>
-  <script src="js/register-sw.js"></script>
+  <script>
+  // register the service worker for offline use
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker
+                   .register('./sw.js')
+                   .then(function() { console.log("Service Worker Registered"); });
+        }
+
+  </script>
 </body>
 
 </html>
