@@ -1,6 +1,6 @@
-##Porject 2
+## Porject 2
 
-####For UIC IT 202 course
+#### For UIC IT 202 course
 
 To use:
 Here are some options to quickly spin up a local web server to let your browser render local files
@@ -39,3 +39,7 @@ PHP
 Of course PHP also has its solution.
 
 php -S localhost:8000
+
+
+From stackoverflow: answered by Scott Stensland
+https://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local
