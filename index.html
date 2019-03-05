@@ -240,7 +240,7 @@
           center: chicago
         });
 
-      $.get("https://data.cityofchicago.org/resource/cwig-ma7x.json?$limit=5",
+      $.get("https://data.cityofchicago.org/resource/cdmx-wzbz.json?$limit=5",
 
         function(response) {
           console.log("in data callback");
@@ -263,8 +263,14 @@
           });
 
           var infowindow = new google.maps.InfoWindow({
-            content: v.dba_name
+            content: 'Ward: ' + v.ward + '<br />'+ 'Status: ' + v.status + '<br />Address: ' + v.street_address
           });
+
+          removeMapMarkers = () => {
+            for (let i = 0; i < this.markers.length; i++) {
+              this.markers[i].setMap(null);
+            }
+          }
 
           marker.addListener('click', function() {
             infowindow.open(map, marker);
