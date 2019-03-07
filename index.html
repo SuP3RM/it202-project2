@@ -222,9 +222,15 @@
             });
 
             let infowindow = new google.maps.InfoWindow({
-              content: 'Ward: ' + v.ward + '<br />'+ 'Status: ' + v.status + '<br />Address: ' + v.street_address
+              content: 'Ward: ' + v.ward + '<br/>'+ 'Status: ' + v.status +
+              '<br/>Address: ' + v.street_address + '<br/>SRN: ' + v.service_request_number + '<br/>Graffiti location: ' + v.where_is_the_graffiti_located_ +
+              '<br/>Type of Surface: ' + v.what_type_of_surface_is_the_graffiti_on_ + '<br/>Date Created: ' + v.creation_date + '<br/>Completion Date: ' + v.completion_date
             });
 
+
+            if (v.status === 'Completed') {
+
+            }
 
             marker.addListener('click', function() {
               infowindow.open(map, marker);
