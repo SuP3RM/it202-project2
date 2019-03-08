@@ -225,6 +225,9 @@
               content: 'Ward: ' + v.ward + '<br />'+ 'Status: ' + v.status + '<br />Address: ' + v.street_address
             });
 
+            if (infowindow.v.status === 'open') {
+              return infowindow
+            }
 
             marker.addListener('click', function() {
               infowindow.open(map, marker);
