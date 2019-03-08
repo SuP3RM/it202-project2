@@ -41,7 +41,7 @@
       <div id="map"></div>
     </section> -->
 
-  <body>
+    <body>
   	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   		<a class="navbar-brand" href="#">Navbar</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,25 +73,28 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script>
-      $(document).ready(function() {
 
-        function hideScreens() {
-          $(".content").hide();
-        }
+      <script>
+        $(document).ready(function() {
+          $('#home').show();
 
-        $(".nav-link").on("click", function(){
-          hideScreens();
-          var target = $(this).attr("href");
-          $(target).show();
+          function hideScreens() {
+            $(".content").hide();
+          }
+
+          $(".nav-link").on("click", function(){
+            hideScreens();
+            var target = $(this).attr("href");
+            $(target).show();
+          });
+
         });
+      </script>
 
-      });
-    </script>
 
-  </body>
+    </body>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script>
