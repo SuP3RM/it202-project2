@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
     <!-- Custom styles for this template -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css" >
     <link rel="stylesheet" href="css/main.css">
 
 
@@ -36,7 +36,7 @@
         width: 100%;
         }
 
-          </style>
+    </style>
   </head>
 
   <body>
@@ -181,61 +181,7 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script>
-      // Initialize and add the map
-      function initMap() {
-        // The location of Chicago
-        let chicago = {
-          lat: 41.8781,
-          lng: -87.6298
-        };
-
-        let map = new google.maps.Map(
-          document.getElementById('map'), {
-            zoom: 11,
-            center: chicago
-          });
-
-        $.get("https://data.cityofchicago.org/resource/cdmx-wzbz.json?$limit=5",
-
-          function(response) {
-            //console.log("in data callback");
-            let data = response;
-            createMarkers(map, data);
-          });
-
-        function createMarkers(map, data) {
-          //console.log(data);
-          $.each(data, function(i, v) {
-
-            let location = {
-              lat: parseFloat(v.latitude),
-              lng: parseFloat(v.longitude)
-            }
-
-            let marker = new google.maps.Marker({
-              map: map,
-              position: location,
-              icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-              }
-            });
-
-            let infowindow = new google.maps.InfoWindow({
-              content: 'Ward: ' + v.ward + '<br/>'+ 'Status: ' + v.status +
-              '<br/>Address: ' + v.street_address + '<br/>SRN: ' + v.service_request_number + '<br/>Graffiti location: ' + v.where_is_the_graffiti_located_ +
-              '<br/>Type of Surface: ' + v.what_type_of_surface_is_the_graffiti_on_ + '<br/>Date Created: ' + v.creation_date + '<br/>Completion Date: ' + v.completion_date
-            });
-
-            marker.addListener('click', function() {
-              infowindow.open(map, marker);
-            });
-
-          });
-        }
-      };
-    </script>
+    <script src="js/map.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACQ-Se5XgECXNgPfbY88TBNMYoijTtSUI&callback=initMap">
     </script>
     <script>
