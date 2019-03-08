@@ -3,7 +3,7 @@
 #### For UIC IT 202 course
 
 To use:
-Here are some options to quickly spin up a local web server to let your browser render local files
+Here are some options to quickly spin up a local web server to let your browser render local files best ran in incognito window.
 
 Python 2
 If you have Python installed...
