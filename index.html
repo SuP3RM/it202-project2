@@ -172,8 +172,6 @@
         <p class="float-right">
           <a href="#">Back to top</a>
         </p>
-        <p></p>
-        <p>.</p>
       </div>
     </footer>
 
@@ -202,13 +200,13 @@
         $.get("https://data.cityofchicago.org/resource/cdmx-wzbz.json?$limit=5",
 
           function(response) {
-            console.log("in data callback");
+            //console.log("in data callback");
             let data = response;
             createMarkers(map, data);
           });
 
         function createMarkers(map, data) {
-          console.log(data);
+          //console.log(data);
           $.each(data, function(i, v) {
 
             let location = {
@@ -217,8 +215,11 @@
             }
 
             let marker = new google.maps.Marker({
+              map: map,
               position: location,
-              map: map
+              icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+              }
             });
 
             let infowindow = new google.maps.InfoWindow({
@@ -226,11 +227,6 @@
               '<br/>Address: ' + v.street_address + '<br/>SRN: ' + v.service_request_number + '<br/>Graffiti location: ' + v.where_is_the_graffiti_located_ +
               '<br/>Type of Surface: ' + v.what_type_of_surface_is_the_graffiti_on_ + '<br/>Date Created: ' + v.creation_date + '<br/>Completion Date: ' + v.completion_date
             });
-
-
-            if (v.status === 'Completed') {
-
-            }
 
             marker.addListener('click', function() {
               infowindow.open(map, marker);
