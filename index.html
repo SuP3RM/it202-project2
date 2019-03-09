@@ -4,68 +4,98 @@
   <head>
     <meta charset="utf-8">
     <link rel='manifest' href='./manifest.json'>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Project 2</title>
 
     <!-- stylesheet from bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    <link rel="stylesheet" href="css/main.css">
 
     <style>
       .bd-placeholder-img {
-              font-size: 1.125rem;
-              text-anchor: middle;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-            }
-
-            @media (min-width: 768px) {
-              .bd-placeholder-img-lg {
-                font-size: 3.5rem;
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
               }
-            }
-        #map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;
-        }
 
-    </style>
+              @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                  font-size: 3.5rem;
+                }
+              }
+          #map {
+          height: 400px;  /* The height is 400 pixels */
+          width: 100%;
+          }
+
+      </style>
 
   </head>
 
   <body>
     <!-- navigation bar -->
-  	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  		<a class="navbar-brand" href="#home">Navbar</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#home">GG Removal</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#home">Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#screen2">Screen 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#screen3">Screen 3</a>
-        </li>
-      </ul>
-    </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#screen2">List View</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#screen3">Map View</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <!-- home page -->
     <section class="content" id="home">
-      Home page
+
+      <div id="home-header">
+        <div class="header">Welcome to 311 GG Removal!</div>
+        <p class="header-par">You can either search by ward or by status of a 311 requests. <br>Use the Search tool to look for a request! </p>
+      </div>
+
+      <form id="search" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Ward or Status" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
 
     </section>
+
     <!-- list page -->
     <section class="content" id="screen2">
+
+      <div id="list-header">
+        <div class="header">Here is a List view of results</div>
+        <p class="header-par">You can click on a list item to view more details and see it on a map.</p>
+      </div>
+
       This is screen 2
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Results
+          <span class="badge badge-primary badge-pill">status</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Results
+          <span class="badge badge-primary badge-pill">status</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Results
+          <span class="badge badge-primary badge-pill">status</span>
+        </li>
+      </ul>
     </section>
     <!-- detail/map page -->
     <section class="content" id="screen3">
@@ -75,40 +105,43 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-      <script>
-        $(document).ready(function() {
+    <script>
+      $(document).ready(function() {
+        hideScreens();
+        $('#home').show();
+
+        function hideScreens() {
+          $(".content").hide();
+        }
+
+        $(".nav-link").on("click", function() {
           hideScreens();
-          $('#home').show();
-
-          function hideScreens() {
-            $(".content").hide();
-          }
-
-          $(".nav-link").on("click", function(){
-            hideScreens();
-            var target = $(this).attr("href");
-            $(target).show();
-          });
-
+          var target = $(this).attr("href");
+          $(target).show();
         });
-      </script>
+
+      });
+    </script>
 
   </body>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- From bootstrap jquery, slim, and popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
   <script src="js/map.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACQ-Se5XgECXNgPfbY88TBNMYoijTtSUI&callback=initMap"></script>
   <script>
-  // register the service worker for offline use
-        if('serviceWorker' in navigator) {
-          navigator.serviceWorker
-                   .register('./sw.js')
-                   .then(function() { console.log("Service Worker Registered"); });
-        }
-
+    // register the service worker for offline use
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('./sw.js')
+        .then(function() {
+          console.log("Service Worker Registered");
+        });
+    }
   </script>
 
 </html>

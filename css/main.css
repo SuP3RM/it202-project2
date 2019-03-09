@@ -1,0 +1,18 @@
+html {
+  font-family: sans-serif, monospace, serif;
+}
+
+.header {
+  text-align: center;
+  font-size: 500%;
+}
+
+.header-par {
+  text-align: center;
+  font-size: 250%;
+}
+
+#search {
+  margin: 40%;
+  padding: 10% 0%;
+}
