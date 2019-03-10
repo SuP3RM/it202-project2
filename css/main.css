@@ -1,7 +1,22 @@
-#header {
-  font-size: 225%;
-  background-color: inherit;
+html {
+  font-family: sans-serif, monospace, serif;
+}
+
+.header {
   text-align: center;
-  color: black;
-  background-image: linear-gradient(-90deg, red, yellow);
+  font-size: 500%;
+}
+
+.header-par {
+  text-align: center;
+  font-size: 250%;
+}
+
+#search {
+  margin: 40%;
+  padding: 10% 0%;
+}
+.anc-list {
+  text-align: center;
+  font-size: 150%;
 }

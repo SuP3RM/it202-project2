@@ -17,7 +17,7 @@
 
 version = '1.0';
 
-let cacheName = 'Graffiti_Removal' + version;
+let cacheName = 'GG_Removal' + version;
 
 self.addEventListener('install', e => {
   let timeStamp = Date.now();
@@ -25,7 +25,10 @@ self.addEventListener('install', e => {
     caches.open(cacheName).then(cache => {
       return cache.addAll([
         `./`,
-        `./index.html`
+        `./index.html`,
+        `./letterM.png`,
+        `./manifest.json`,
+        `./sw.js`
       ])
       .then(() => self.skipWaiting());
     })
