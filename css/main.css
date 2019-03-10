@@ -16,3 +16,7 @@ html {
   margin: 40%;
   padding: 10% 0%;
 }
+.anc-list {
+  text-align: center;
+  font-size: 150%;
+}

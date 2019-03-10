@@ -14,6 +14,8 @@
 
     <style>
       .template {display: none;}
+      .Open {color: yellow;}
+      .Completed {color: green;}
       .bd-placeholder-img {
                   font-size: 1.125rem;
                   text-anchor: middle;
@@ -67,13 +69,18 @@
 
       <div id="home-header">
         <div class="header">Welcome to 311 GG Removal!</div>
-        <p class="header-par">You can either search by ward or by status of a 311 requests. <br>Use the Search tool to look for a request! </p>
+        <p class="header-par">You can search by ward to see open status of 311 graffiti removal requests. <br>Use the Search tool to look for a request! </p>
       </div>
 
-      <form id="search" class="form-inline my-2 my-lg-0">
-        <input id="input-search-bar" class="form-control mr-sm-2" type="search" placeholder="Ward or Status" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <form id="filters" class="form-inline my-2 my-lg-0">
+        <input id="input-search-bar" class="form-control mr-sm-2" type="text" placeholder="Search By Ward" aria-label="Search">
+        <select name="results" id="results">
+          <option></option>
+          <option value="Completed">Completed</option>
+          <option value="Open">Open</option>
+        </select>
       </form>
+      <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 
     </section>
 
@@ -83,18 +90,19 @@
       <div id="list-header">
         <div class="header">Here is a List view of results</div>
         <p class="header-par">You can click on a list item to view more details and see it on a map.</p>
+        <p class="anc-list">To see results please do a search at the home page.</p>
       </div>
 
-      <div id="cards" class="card template" style="width: 18rem;">
+      <!-- placeholder for cards -->
+      <div id="cards"></div>
+
+    	<div class="card template" style="width: 18rem;">
     		<div class="card-body">
     			<h5 class="card-title">Card title</h5>
     			<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    			<p class="card-location">Some quick example</p>
-          <p class="card-service-request-number">Some quick example</p>
-          <p class="card-zip-code">Some quick example</p>
-          <p class="card-creation-date">Some quick example</p>
-    			<a href="#" class="card-link">On Map</a>
-
+    			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    			<a href="#" class="card-link">Card link</a>
+    			<a href="#" class="card-link">Another link</a>
     		</div>
     	</div>
     </section>
@@ -118,7 +126,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 
   <!-- From bootstrap jquery, slim, and popper.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
