@@ -14,29 +14,28 @@
 
     <style>
       .template {display: none;}
-      .Open {color: yellow;}
-      .Completed {color: green;}
-      .bd-placeholder-img {
-                  font-size: 1.125rem;
-                  text-anchor: middle;
-                  -webkit-user-select: none;
-                  -moz-user-select: none;
-                  -ms-user-select: none;
-                  user-select: none;
-                }
-
-                @media (min-width: 768px) {
-                  .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
+        .Open {color: yellow;}
+        .Completed {color: green;}
+        .bd-placeholder-img {
+                    font-size: 1.125rem;
+                    text-anchor: middle;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
                   }
-                }
-            #map {
-            height: 400px;  /* The height is 400 pixels */
-            width: 100%;
-            }
 
-        </style>
+                  @media (min-width: 768px) {
+                    .bd-placeholder-img-lg {
+                      font-size: 3.5rem;
+                    }
+                  }
+              #map {
+              height: 400px;  /* The height is 400 pixels */
+              width: 100%;
+              }
 
+    </style>
   </head>
 
   <body>
@@ -96,15 +95,20 @@
       <!-- placeholder for cards -->
       <div id="cards"></div>
 
-    	<div class="card template" style="width: 18rem;">
-    		<div class="card-body">
-    			<h5 class="card-title">Card title</h5>
-    			<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    			<a href="#" class="card-link">Card link</a>
-    			<a href="#" class="card-link">Another link</a>
-    		</div>
-    	</div>
+      <div class="card template" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-location">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-srn">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-where-located">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-type-surface">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-date-created">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-compl-date">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
     </section>
 
     <!-- detail/map page -->
@@ -137,11 +141,13 @@
 
   <script>
     // register the service worker for offline use
-        if('serviceWorker' in navigator) {
-          navigator.serviceWorker
-                   .register('./sw.js')
-                   .then(function() { console.log("Service Worker Registered"); });
-        }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('./sw.js')
+        .then(function() {
+          console.log("Service Worker Registered");
+        });
+    }
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACQ-Se5XgECXNgPfbY88TBNMYoijTtSUI&callback=initMap"></script>
 
