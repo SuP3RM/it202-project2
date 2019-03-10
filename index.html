@@ -14,25 +14,25 @@
 
     <style>
       .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-              }
-
-              @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                  font-size: 3.5rem;
+                  font-size: 1.125rem;
+                  text-anchor: middle;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none;
                 }
-              }
-          #map {
-          height: 400px;  /* The height is 400 pixels */
-          width: 100%;
-          }
 
-      </style>
+                @media (min-width: 768px) {
+                  .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                  }
+                }
+            #map {
+            height: 400px;  /* The height is 400 pixels */
+            width: 100%;
+            }
+
+        </style>
 
   </head>
 
@@ -53,6 +53,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#screen3">Map View</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About App</a>
           </li>
         </ul>
       </div>
@@ -81,57 +84,43 @@
         <p class="header-par">You can click on a list item to view more details and see it on a map.</p>
       </div>
 
-      This is screen 2
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Results
-          <span class="badge badge-primary badge-pill">status</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Results
-          <span class="badge badge-primary badge-pill">status</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
+        <li id="template" class="list-group-item d-flex justify-content-between align-items-center">
           Results
           <span class="badge badge-primary badge-pill">status</span>
         </li>
       </ul>
     </section>
+
     <!-- detail/map page -->
     <section class="content" id="screen3">
       This is screen 3
       <div id="map"></div>
     </section>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <script>
-      $(document).ready(function() {
-        hideScreens();
-        $('#home').show();
-
-        function hideScreens() {
-          $(".content").hide();
-        }
-
-        $(".nav-link").on("click", function() {
-          hideScreens();
-          var target = $(this).attr("href");
-          $(target).show();
-        });
-
-      });
-    </script>
+    <!-- about page for app, github -->
+    <section class="content" id="about">
+      <div id="about-header">
+        <div class="header">About 311 GG Removal</div>
+        <p class="header-par">The github for this app is from user <a href="https://github.com/SuP3RM/it202-project2">SuP3RM</a></p>
+        <p class="header-par">The developer is a senior from University of Illinois at Chicago, and his name is <a href="www.linkedin.com/in/marioa255">Mario Aranda</a>.</p>
+      </div>
+    </section>
 
   </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 
   <!-- From bootstrap jquery, slim, and popper.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+  <script src="js/multiscreens.js"></script>
+  <script src="js/list.js"></script>
   <script src="js/map.js"></script>
+
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACQ-Se5XgECXNgPfbY88TBNMYoijTtSUI&callback=initMap"></script>
   <script>
     // register the service worker for offline use
