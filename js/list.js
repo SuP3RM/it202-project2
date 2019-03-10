@@ -1,33 +1,63 @@
 $(document).ready(function() {
-  // let url = "https://data.cityofchicago.org/resource/xzkq-xp2w.json?$select=department,count(department)&$group=department&$order=department";
-  let url = "https://data.cityofchicago.org/resource/cdmx-wzbz.json?$where=ward > 0"
-  $.get(url, function(data) {
-    console.log(data);
 
-    $.each(data, function(i, v) {
-      let clone = $("#template").clone();
-      clone.text(v.ward);
-      let span = $("<span>")
-        .addClass("badge badge-primary badge-pill")
-        .text(v.status);
-      clone.append(span);
-      clone.attr("id", "");
-      clone.attr("data-department", encodeURIComponent(v.ward));
+  var endpoint = "https://data.cityofchicago.org/resource/cdmx-wzbz.json?$limit=10";
 
-      $(".list-group").append(clone);
 
-    });
+  $("#search").on("click", function() {
+    // clear the display
+    $("#cards").empty();
+    var searchString = $("#search-input-bar").val();
+    console.log(searchString);
+    var url = endpoint + "&ward=" + searchString;
+    console.log(url);
+
+    $.get(url, function(response) {
+      console.log(response);
+
+      $("#cards").append("<h2>Your query returned " + response.length + " records.</h2>");
+
+
+      var data = response;
+
+      $.each(data, function(i, v) {
+        //console.log(i,v);
+
+        // clone card
+        var clone = $(".template").clone();
+        // update values
+        clone.find(".card-title").text(v.ward);
+
+
+
+        clone.find(".card-title").addClass(v.results);
+
+        clone.find(".card-title").attr("data-results", v.results);
+
+        clone.find(".card-subtitle").text(v.status);
+
+        if (v.zip_code) {
+          //clone.find(".card-text").text(v.violations);
+        } else {
+          clone.find(".card-text").text("")
+        }
+
+
+
+
+        clone.removeClass("template")
+
+
+        // insert into DOM
+        $("#screen2").append(clone);
+
+      });
+
+
+    })
+
   });
 
 
-  // $("body").on("click", ".list-group-item", function() {
-  //   $.get("https://data.cityofchicago.org/resource/xzkq-xp2w.json?department=" + $(this).attr("data-department"), function(data) {
-  //     console.log(data);
-  //     // <clear whatever container holds the cards>
-  //     // <loop through response data, clone simple card and append to container>
-  //   });
-  //
-  // });
 
 
 

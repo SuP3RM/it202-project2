@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/main.css">
 
     <style>
+      .template {display: none;}
       .bd-placeholder-img {
                   font-size: 1.125rem;
                   text-anchor: middle;
@@ -70,7 +71,7 @@
       </div>
 
       <form id="search" class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Ward or Status" aria-label="Search">
+        <input id="input-search-bar" class="form-control mr-sm-2" type="search" placeholder="Ward or Status" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
 
@@ -84,12 +85,18 @@
         <p class="header-par">You can click on a list item to view more details and see it on a map.</p>
       </div>
 
-      <ul class="list-group">
-        <li id="template" class="list-group-item d-flex justify-content-between align-items-center">
-          Results
-          <span class="badge badge-primary badge-pill">status</span>
-        </li>
-      </ul>
+      <div id="cards" class="card template" style="width: 18rem;">
+    		<div class="card-body">
+    			<h5 class="card-title">Card title</h5>
+    			<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    			<p class="card-location">Some quick example</p>
+          <p class="card-service-request-number">Some quick example</p>
+          <p class="card-zip-code">Some quick example</p>
+          <p class="card-creation-date">Some quick example</p>
+    			<a href="#" class="card-link">On Map</a>
+
+    		</div>
+    	</div>
     </section>
 
     <!-- detail/map page -->
@@ -121,16 +128,15 @@
   <script src="js/list.js"></script>
   <script src="js/map.js"></script>
 
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACQ-Se5XgECXNgPfbY88TBNMYoijTtSUI&callback=initMap"></script>
   <script>
     // register the service worker for offline use
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('./sw.js')
-        .then(function() {
-          console.log("Service Worker Registered");
-        });
-    }
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker
+                   .register('./sw.js')
+                   .then(function() { console.log("Service Worker Registered"); });
+        }
   </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACQ-Se5XgECXNgPfbY88TBNMYoijTtSUI&callback=initMap"></script>
+
 
 </html>

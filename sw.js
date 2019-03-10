@@ -17,7 +17,7 @@
 
 version = '1.0';
 
-let cacheName = 'Graffiti_Removal' + version;
+let cacheName = 'GG_Removal' + version;
 
 self.addEventListener('install', e => {
   let timeStamp = Date.now();
