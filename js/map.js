@@ -27,19 +27,29 @@ function initMap() {
     // url += color + "-dot.png";
 
     $.each(data, function(i, v) {
-
+      let marker;
       let location = {
         lat: parseFloat(v.latitude),
         lng: parseFloat(v.longitude)
       }
 
-      let marker = new google.maps.Marker({
-        map: map,
-        position: location
-        // icon: {
-        //   url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-        // }
-      });
+      if (v.status === "Open") {
+        marker = new google.maps.Marker({
+          map: map,
+          position: location,
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+          }
+        })
+      } else {
+        marker = new google.maps.Marker({
+          map: map,
+          position: location,
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          }
+        })
+      }
 
       let infowindow = new google.maps.InfoWindow({
         content: 'Ward: ' + v.ward + '<br/>' + 'Status: ' + v.status +
