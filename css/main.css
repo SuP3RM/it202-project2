@@ -1,5 +1,10 @@
 html {
   font-family: sans-serif, monospace, serif;
+  background: linear-gradient(to bottom, #ff99cc -7%, #66ffff 102%);
+}
+
+body {
+  background: linear-gradient(to bottom, #ff99cc -7%, #66ffff 102%);
 }
 
 .header {
@@ -12,11 +17,35 @@ html {
   font-size: 250%;
 }
 
+#home {}
+
+#home-header {
+  margin: 5%;
+  padding: 1%;
+}
+
+#navbar-brand {
+  color: #1fc8db;
+}
+
 #search {
   margin: 40%;
   padding: 10% 0%;
 }
-.anc-list {
+
+.header-info {
   text-align: center;
   font-size: 150%;
+}
+
+#filters {
+  margin: 35%;
+}
+
+#results {
+  margin: 1%;
+}
+
+#cards {
+  text-align: -webkit-center;
 }

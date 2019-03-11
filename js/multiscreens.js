@@ -12,4 +12,10 @@ $(document).ready(function() {
     $(target).show();
   });
 
+  $(".searchRe").on("click", function () {
+    hideScreens();
+    var target = $(this).attr("href");
+    $(target).show();
+  })
+
 });

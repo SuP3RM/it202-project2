@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     // clear the display
     $("#cards").empty();
-    
+
     let searchString = $("#input-search-bar").val();
     let url = endpoint + "&ward=" + searchString;
 

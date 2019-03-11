@@ -14,35 +14,39 @@
 
     <style>
       .template {display: none;}
-        .Open {color: yellow;}
-        .Completed {color: green;}
-        .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
+      .Open {color: yellow;}
+      .Completed {color: green;}
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
         }
+      }
 
-        #map {
-        height: 500px;
-        max-width: 100%;
-        }
+      #map {
+      height: 500px;
+      max-width: 100%;
+      }
+      #map-border {
+        border: 10px;
+        margin: 10px;
+      }
 
-      </style>
+    </style>
   </head>
 
   <body>
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#home">GG Removal</a>
+      <a id="navbar-brand" class="navbar-brand" href="#home">GG Removal</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -79,8 +83,10 @@
           <option value="Completed">Completed</option>
           <option value="Open">Open</option>
         </select>
+        <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
-      <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+      <div class="header-info">Once you clicked search, click <a class="searchRe" href="#screen2">HERE</a> to see results.</div>
 
     </section>
 
@@ -90,13 +96,13 @@
       <div id="list-header">
         <div class="header">Here is a List view of results</div>
         <p class="header-par">You can click on a list item to view more details and see it on a map.</p>
-        <p class="anc-list">To see results please do a search at the home page.</p>
+        <p class="header-info">To see results please search by ward number at the <a class="searchRe" href="#home">home page</a>home page.</p>
       </div>
 
       <!-- placeholder for cards -->
       <div id="cards"></div>
 
-      <div class="card template" style="width: 18rem;">
+      <div class="card template" style="width: 20rem;">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -106,16 +112,18 @@
           <p class="card-type-surface">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <p class="card-date-created">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <p class="card-compl-date">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+          <a class="card-link searchRe" href="#screen2">HERE</a>
         </div>
       </div>
     </section>
 
     <!-- detail/map page -->
     <section class="content" id="screen3">
-      This is screen 3
-      <div id="map"></div>
+      <p class="header-par">Map View of Service Requests</p>
+      <p class="header-info"> <b style="color: green;">Green</b> markers are "Completed" requests while <b style="color: red;">Red</b> markers are "Open" requests</p>
+      <div id="map-border">
+        <div id="map"></div>
+      </div>
     </section>
 
     <!-- about page for app, github -->
