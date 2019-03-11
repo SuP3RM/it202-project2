@@ -1,9 +1,8 @@
 ## Porject 2
 
-#### For UIC IT 202 course
+#### For UIC IT 202 course taught by David Hayes
 
-To use:
-Here are some options to quickly spin up a local web server to let your browser render local files best ran in incognito window.
+#### To use: Here are some options to quickly spin up a local web server to let your browser render local files BEST ran in incognito window.
 
 Python 2
 If you have Python installed...
