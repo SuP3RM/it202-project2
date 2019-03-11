@@ -1,5 +1,6 @@
 {
   "name": "311 Graffiti Removal",
+  "author": "Mario Aranda",
   "short_name": "Graffiti Removal",
   "icons": [ {
         "src": "./letterM.png",
